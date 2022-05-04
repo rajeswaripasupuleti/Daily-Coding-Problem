@@ -1,0 +1,6 @@
+s=input()
+op=""
+for i in s:
+    if(i not in op):
+        op+=str(s.count(i))+i
+print(op)

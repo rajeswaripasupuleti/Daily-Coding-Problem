@@ -1,0 +1,9 @@
+def fun(arr):
+    # iterate from minimum of array to max of array+1
+    for i in range(min(arr),max(arr)+2):
+        #Ignore the negative numbers using condition and the number which is not present in list is returned else maximim of array +1  is returned
+        if i not in arr and i>0:
+            return i
+
+arr=list(map(int,input().split()))
+print(fun(arr))

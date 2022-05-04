@@ -1,0 +1,16 @@
+import functools
+
+def new_array(arr):
+    
+    k=[] # an empty list to store output list
+    for i in range(len(arr)):
+        
+        # Using list slicing skip the ith index element
+        #Reduce function applies the given function to the provided iterable object.
+        
+        product=functools.reduce(lambda x,y:x*y,arr[:i]+arr[i+1:])
+        k.append(product)
+    return k
+    
+arr=list(map(int,input().split()))
+print(new_array(arr))

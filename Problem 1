@@ -1,0 +1,12 @@
+#Two numbers summing upto K or not
+
+def sumup_k(arr,k):
+    #if both i and k-i exists in the list it means the list has a pair whose sum is equals to k.
+    for i in arr:
+        if(k-i in arr):
+            return True
+        return False
+    
+k=int(input())
+arr=list(map(int,input().split()))
+print(sumup_k(arr,k))

@@ -1,0 +1,18 @@
+stack=[]
+st=input()
+for i in st:
+    if(i=='[' or i=='{' or i=='('):
+        stack.append(i)
+    elif(i=='}'):
+        if(stack[-1]=='{'):
+            stack.pop()
+    elif(i==']'):
+        if(stack[-1]=='['):
+            stack.pop()
+    else:
+        if(stack[-1]=='('):
+            stack.pop()
+if(stack==[]):
+    print("True")
+else:
+    print("False ",stack)

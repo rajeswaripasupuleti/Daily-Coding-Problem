@@ -1,0 +1,9 @@
+from itertools import combinations
+
+a=set(map(int,input().split()))
+powerset=set()
+
+for i in range(len(a)+1):
+    powerset.add(tuple(combinations(a,i)))
+    
+print(powerset)

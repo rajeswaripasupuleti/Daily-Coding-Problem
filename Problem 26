@@ -1,0 +1,3 @@
+l=list(map(int,input().split()))
+k=int(input())
+print(l[len(l)-k])

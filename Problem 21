@@ -1,0 +1,15 @@
+l1=[]
+for i in range(int(input())):
+    l1.append(list(map(int,input().split())))
+
+start,end=l1[0][0],l1[0][1]
+rooms=1
+for i in l1[1:]:
+    if(i[0]<start and start<i[1] or start<i[1] and end>i[1]):
+        rooms+=1 
+        start=min(start,i[0])
+        end=max(end,i[1])
+
+print(rooms)
+    
+    

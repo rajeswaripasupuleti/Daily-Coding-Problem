@@ -1,0 +1,5 @@
+list1=input().split('->')
+list2=input().split('->')
+
+k=set(list1).intersection(set(list2))
+print(int(list(k)[0]))

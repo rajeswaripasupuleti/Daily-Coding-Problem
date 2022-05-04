@@ -1,0 +1,10 @@
+import re 
+
+regex=input()
+st=input()
+p=str(re.search(regex,st))
+try:
+    if(p.index(st)):
+        print("True")
+except ValueError:
+    print("False")

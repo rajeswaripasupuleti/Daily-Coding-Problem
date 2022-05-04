@@ -1,0 +1,10 @@
+l=input().split()
+str1=input()
+i,j=0,0
+op=[]
+while(i<len(str1)):
+    while(j<=len(str1) and str1[i:j] not in l):
+        j+=1 
+    op.append(str1[i:j])
+    i=j
+print(op)

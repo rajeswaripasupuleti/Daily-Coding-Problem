@@ -1,0 +1,8 @@
+k=list(map(int,input().split()))
+units=0
+for i in k:
+    if(i<=k[0]):
+        units+=abs(k[0]-i)
+    else:
+        break
+print(units)

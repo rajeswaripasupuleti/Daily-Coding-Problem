@@ -1,0 +1,8 @@
+string=input()
+list1=list(map(str,input().split()))
+op=[]
+
+for i in list1:
+    if(string in i):
+        op.append(i)
+print(op)

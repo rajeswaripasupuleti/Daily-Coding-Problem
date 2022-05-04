@@ -1,0 +1,9 @@
+s=input()
+k=int(input())
+l=[s[i:j] for i in range(len(s)) for j in range(i+1,len(s))]
+op=[]
+for i in l:
+    if(len(set(i))==k):
+        op.append(i)
+op=sorted(op,key=len)
+print(op[-1])

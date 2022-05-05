@@ -1,0 +1,9 @@
+x=19
+c=0
+n=int(input())
+while(c!=n):
+    if(sum(int(i) for i in str(x))==10):
+        c+=1 
+    x+=1
+else:
+    print(x-1)

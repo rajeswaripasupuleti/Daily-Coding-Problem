@@ -1,0 +1,6 @@
+arr=list(map(int,input().split()))
+k=int(input())
+if(k not in arr):
+    print("null")
+else:
+    print(arr.index(k))

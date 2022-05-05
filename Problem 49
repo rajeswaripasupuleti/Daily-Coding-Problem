@@ -1,0 +1,12 @@
+
+def subarrayssum(ar):
+    msum=0
+    for i in range(len(ar)):
+        for j in range(i+1,len(ar)+1):
+            k=sum(ar[i:j])
+            if(k>msum):
+                msum=k 
+    return msum 
+
+nums=list(map(int,input().split()))
+print(subarrayssum(nums))

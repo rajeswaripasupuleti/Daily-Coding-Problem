@@ -1,0 +1,26 @@
+class stack:
+    
+    def __init__(self):
+        self.stack=[]
+    
+    def push(self,val):
+        self.stack.append(val)
+    
+    def pop(self):
+        
+        return self.stack.pop()
+    
+    def max_(self):
+        if(self.stack==[]):
+            return null
+        else:
+            return max(self.stack)
+
+stack1=stack()
+stack1.push(10)
+stack1.push(20)
+stack1.push(30)
+stack1.push(40)
+stack1.push(50)
+print("Popped element is",stack1.pop())
+print("Maximum of stack",stack1.max_())

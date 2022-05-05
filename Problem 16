@@ -3,7 +3,7 @@ def record(order_id):
     log.append(order_id)
 
 def get_last(i):
-    return log[n-i]
+    return log[n-i:]
     
 n=int(input())
 for i in range(n):

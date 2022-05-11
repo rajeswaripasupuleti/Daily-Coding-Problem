@@ -1,0 +1,112 @@
+/*
+
+This problem was asked by Google.
+
+On our special chessboard, two bishops attack each other if they share the same diagonal. This includes bishops that have another bishop located between them, i.e. bishops can attack through pieces.
+
+You are given N bishops, represented as (row, column) tuples on a M by M chessboard. Write a function to count the number of pairs of bishops that attack each other. The ordering of the pair doesn't matter: (1, 2) is considered the same as (2, 1).
+
+For example, given M = 5 and the list of bishops:
+
+(0, 0)
+(1, 2)
+(2, 2)
+(4, 0)
+The board would look like this:
+
+[b 0 0 0 0]
+[0 0 b 0 0]
+[0 0 b 0 0]
+[0 0 0 0 0]
+[b 0 0 0 0]
+You should return 2, since bishops 1 and 3 attack each other, as well as bishops 3 and 4.
+
+ */
+import java.util.*;
+
+public class Vehicle
+{
+    Scanner s=new Scanner(System.in);
+    int n=s.nextInt();
+    int a[][]=new int[n][n];
+    String string="";
+    String sa="";
+    public void read()
+    {
+        System.out.println("Enter 1 for bishop and 0 for empty cell");
+        for(int i=0;i<n;i++) {
+            for (int j = 0; j < n; j++) {
+                a[i][j] = s.nextInt();
+                if (a[i][j] == 1) {
+                    diagonal_primary(i, j);
+                    diagonal_secondary(i, j);
+                    string+=sa+"#";
+                    sa="";
+                }
+            }
+        }
+        inAttack(string);
+    }
+    public boolean didConverge(String s1,String s2)
+    {
+        String a[]=s1.split("@");
+        for(int i=0;i<a.length;i++)
+        {
+            if(s2.contains(a[i]))
+                return true;
+        }
+        return false;
+    }
+    public void inAttack(String s)
+    {
+        //System.out.println(s);
+        int count=0;
+        String str[]=s.split("#");
+        for(int i=0;i<str.length;i++)
+        {
+            for(int j=i+1;j<str.length;j++)
+            {
+                if(didConverge(str[i],str[j]))
+                    count++;
+            }
+        }
+        System.out.println(count);
+    }
+    public void diagonal_primary(int row,int col)
+    {
+        int r=row+1;int c=col+1;
+        while(row >=0 && col>=0)
+        {
+            if(!sa.contains(""+row+""+col) && a[row][col]==1)
+                sa+=row+""+col+"@";
+            row--;col--;
+        }
+        while(r<n && c<n)
+        {
+            if(!sa.contains(""+r+""+c) && a[r][c]==1)
+                sa+=r+""+c+"@";
+            r++;c++;
+        }
+    }
+    public void diagonal_secondary(int row,int col)
+    {
+        int r=row;int c=col;
+        while(row >=0)
+        {
+            if(!sa.contains(""+row+""+col) && a[row][col]==1)
+                sa += row + "" + col + "@";
+                --row;
+                ++col;
+        }
+        while(c>=0)
+        {
+            if(!sa.contains(""+r+""+c) && a[r][c]==1)
+                sa+=r+""+c+"@";
+            r++;c--;
+        }
+    }
+    public static void main(String[] args) {
+        Vehicle m=new Vehicle();
+        m.read();
+    }
+}

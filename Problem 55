@@ -1,0 +1,50 @@
+/*
+
+This problem was asked by Microsoft.
+
+Implement a URL shortener with the following methods:
+
+shorten(url), which shortens the url into a six-character alphanumeric string, such as zLg6wl.
+restore(short), which expands the shortened string into the original url. If no such shortened string exists, return null.
+
+*/
+
+import java.util.*;
+
+class Main
+{
+    static String s2="";
+    static String s="";
+    static public String shorten(String url)
+    {
+        int j=0;
+        s="";
+        s2="";
+        for(int i=0;i<url.length()-url.length()/6+1;i+=url.length()/6)
+        {
+         s+=url.substring(i,i+url.length()/6)+"@";
+         s2+=url.substring(i,i+url.length()/6).charAt(0);
+        }
+        if(url.length()%6 !=0)
+        s+=url.substring(url.length()-url.length()/6+(url.length()%6),url.length());
+        return s2;
+    }
+    static public String restore(String sp)
+    {
+        String st[]=s.split("@");
+        String op="";
+        for(int i=0;i<st.length;i++)
+        {
+            op+=st[i];
+        }
+        return op;
+        
+    }
+    public static void main (String[] args) {
+        Scanner s=new Scanner(System.in);
+        String url=s.next();
+        System.out.println(shorten(url));
+        String p=shorten(url);
+        System.out.println(restore(p));
+    }
+}

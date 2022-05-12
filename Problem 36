@@ -1,0 +1,99 @@
+/*
+
+This problem was asked by Dropbox.
+
+Given the root to a binary search tree, find the second largest node in the tree.
+
+*/
+
+import java.util.*;
+
+class Node 
+{
+		int key;
+		Node left, right;
+
+		public Node(int item)
+		{
+			key = item;
+			left = right = null;
+		}
+}
+	
+class BinarySearchTree
+{
+	Node root;
+	String st="";
+	BinarySearchTree() 
+	{
+	    this.root =null; 
+	}
+
+	BinarySearchTree(int value) 
+	{ 
+	    root = new Node(value);
+	}
+	void insert(int key) 
+	{ 
+	    root = insertRec(root, key);
+	}
+
+	Node insertRec(Node root, int key)
+	{
+		if (root == null) 
+		{
+			root = new Node(key);
+			return root;
+		}
+        else
+        {
+		if (key <= root.key)
+			root.left = insertRec(root.left, key);
+		else
+			root.right = insertRec(root.right, key);
+        }
+		return root;
+	}
+	void inorder()
+	{ 
+	    inorderRec(root);
+	}
+	void inorderRec(Node root)
+	{
+		if (root != null)
+		{
+			inorderRec(root.left);
+			//System.out.println(root.key);
+			st+=root.key+"@";
+			inorderRec(root.right);
+		}
+	}
+}
+public class Main
+{
+    public static void main(String[] args)
+	{
+	    Main m=new Main();
+		Scanner s=new Scanner(System.in);
+		System.out.println("Enter root ");
+		int root=s.nextInt();
+		BinarySearchTree tree = new BinarySearchTree(root);
+		int ch,i=0;
+		do
+		{
+		    System.out.println("Enter a value to insert ");
+		    int val=s.nextInt();
+		    tree.insert(val);
+		    System.out.println("Enter 1 to continue 0 to stop ");
+		    ch=s.nextInt();
+		}while(ch!=0);
+		
+	tree.inorder();
+	String str[]=(tree.st).split("@");
+	int a[]=new int[str.length];
+	for(String k:str)
+	{a[i++]=Integer.parseInt(k);}
+	Arrays.sort(a);
+	System.out.println(a[a.length-2]);
+	}
+}

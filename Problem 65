@@ -1,0 +1,73 @@
+/*
+
+This problem was asked by Facebook.
+
+Given an array of integers, write a function to determine whether the array could become non-decreasing by modifying at most 1 element.
+
+For example, given the array [10, 5, 7], you should return true, since we can modify the 10 into a 1 to make the array non-decreasing.
+
+Given the array [10, 5, 1], you should return false, since we can't modify any one element to get a non-decreasing array.
+
+*/
+
+import java.util.*;
+
+public class Vehicle
+{
+    Scanner s=new Scanner(System.in);
+    int n=s.nextInt();
+    int m=s.nextInt();
+    int arr[][]=new int[n][m];
+
+    public void readData()
+    {
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++)
+                arr[i][j]=s.nextInt();
+    }
+
+    public void right(int x,int y)
+    {int j=0;
+        for(j=x;j<y;j++)
+            System.out.print(arr[x][j]+" ");
+    }
+
+    public void down(int x,int y)
+    {
+        int j=0;
+        for(j=x;j<n-x+1;j++)
+            System.out.print(arr[j][y]+" ");
+    }
+    public void left(int x,int y,int i)
+    {int j=0;
+        for(j=y;j>=i;j--)
+            System.out.print(arr[x][j]+" ");
+    }
+
+    public void up(int x,int y,int i)
+    {int j=0;
+        for(j=x;j>i;j--)
+            System.out.print(arr[j][y]+" ");
+    }
+    public void spiral()
+    {
+        for(int i=0;i<(n/2);i++)
+        {
+            right(i, m-i);
+            System.out.println();
+            down(i+1, m-i-1);
+            System.out.println();
+            left(n - 1-i, m - 2-i,i);
+            System.out.println();
+            up(n - 2-i, 0+i,i);
+            System.out.println();
+        }
+        if(n%2==1 && m%2==1)
+            System.out.println(arr[n/2][m/2]);
+    }
+    public static void main(String[] args) {
+        Vehicle m=new Vehicle();
+        m.readData();
+        m.spiral();
+    }
+}

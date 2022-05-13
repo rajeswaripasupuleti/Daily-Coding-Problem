@@ -1,0 +1,92 @@
+/*
+
+Given a singly linked list and an integer k, remove the kth last element from the list. k is guaranteed to be smaller than the length of the list.
+
+The list is very long, so making more than one pass is prohibitively expensive.
+
+Do this in constant space and in one pass.
+
+*/
+
+import java.util.*;
+
+class Node 
+{
+    int data;
+    Node next;
+    public Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+
+class LinkedList 
+{
+    Node head;
+    LinkedList()
+    {
+        head=null;
+    }
+    void insert(int data)
+    {
+        head=insertNode(head,data);
+    }
+    Node insertNode(Node head,int data)
+    {
+        Node n=new Node(data);
+       if(head==null)
+       {
+          head=n;
+        return head;
+       }
+       else 
+       {
+          Node temp;
+        temp=head;
+         while(temp.next!=null)
+            {
+                temp=temp.next;
+            }
+            temp.next=n;
+       }
+        return head;
+ }
+    //getNode functions returns the kth last element from given singlylinked list 
+    public int getNode(int k)
+    {
+        String s="";
+        Node temp;
+        temp=head;
+        while(temp.next!=null)
+        {
+            s+=temp.data+"@";
+            temp=temp.next;
+        }
+        s+=temp.data;
+        String str[]=s.split("@");
+        return Integer.parseInt(str[str.length-k]);
+    }
+}
+
+public class Main
+{
+    
+	public static void main(String[] args) {
+	    Scanner s=new Scanner(System.in);
+	    Main m=new Main();
+	    int n,k;
+	    LinkedList l=new LinkedList();
+	    do
+	    {
+	        System.out.println("Enter an element to insert : ");
+	        int ele=s.nextInt();
+	        l.insert(ele);
+	         System.out.println("Enter 0 to stop ");
+	         n=s.nextInt();
+	    }while(n!=0);
+	     System.out.println("Enter k value to get kth last element of liked list ");
+	     k=s.nextInt();
+	      System.out.println(l.getNode(k));
+	}
+}

@@ -1,0 +1,55 @@
+/*
+
+This problem was asked by Facebook.
+
+Given a function that generates perfectly random numbers between 1 and k (inclusive), where k is an input, write a function that shuffles a deck of cards represented as an array using only swaps.
+
+It should run in O(N) time.
+
+Hint: Make sure each one of the 52! permutations of the deck is equally likely.
+
+*/
+
+import java.util.*;
+
+public class Main
+{
+    int getRandom(int k)
+    {
+        Random r=new Random();
+        return 1+r.nextInt(k);
+    }
+    public void shuffle(int r)
+    {
+        int deck[]=new int[52];
+        for(int i=0;i<52;i++)
+        {
+            deck[i]=i+1;
+            System.out.print(deck[i]+" ");
+        }
+        for(int i=0;i<r;i++)
+        {
+            Random r2=new Random();
+            int a=r2.nextInt(52);
+            int b=r2.nextInt(52);
+            int t=a;
+            deck[a]=deck[b];
+            deck[b]=deck[t];
+        }
+        System.out.println("\nAfter shuffle ");
+        for(int i=0;i<52;i++)
+        {
+            System.out.print(deck[i]+" ");
+        }
+    }
+	public static void main(String[] args) {
+	    Scanner s=new Scanner(System.in);
+	    Main m=new Main();
+	    int k,r;
+	    k=s.nextInt();
+	    r=m.getRandom(k);
+	    System.out.println("Random number "+r);
+	    System.out.println("Before shuffle ");
+	    m.shuffle(r);
+	}
+}

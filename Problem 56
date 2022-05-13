@@ -1,0 +1,92 @@
+/*
+
+This problem was asked by Google.
+
+Given an undirected graph represented as an adjacency matrix and an integer k, write a function to determine 
+whether each vertex in the graph can be colored such that no two adjacent vertices share the same color using at most k colors.
+
+*/
+
+import java.util.*;
+
+public class Main
+{
+    int vertices;
+    Scanner s=new Scanner(System.in); 
+    
+    public void getConnectedVertices(int v,int adj[][])
+    {
+        String connected[]=new String[v];
+        Integer vertex[]=new Integer[v];
+        for(int i=0;i<v;i++)
+        {
+            vertex[i]=i+1;
+        }
+        for(int i=0;i<v;i++)
+        {
+            String temp="";
+            for(int j=0;j<v;j++) {
+                if(adj[i][j]==1)
+                temp+=(j+1);
+            }
+            connected[i]=temp;
+        }
+        
+        for(int i=0;i<connected.length;i++)
+        {
+         for(int j=i+1;j<connected.length;j++)
+         {
+             if(connected[i].length()<connected[j].length())
+             {
+                 String temp=connected[i];
+                 int te=vertex[i];
+                 connected[i]=connected[j];
+                 connected[j]=temp;
+                 vertex[i]=vertex[j];
+                 vertex[j]=te;
+             }
+         }
+        }
+        coloring(vertex,connected);
+    }
+    
+    public void coloring(Integer[] vertex,String[] connected)
+    {
+        int colour=1;
+        String colored=""+vertex[0];
+        for(int i=1;i<vertex.length;i++)
+        {
+            for(int j=0;j<colored.length();j++)
+            {
+                Integer p=Integer.parseInt(""+colored.charAt(j));
+                int index=Arrays.asList(vertex).indexOf(p);
+                if(connected[index].contains(""+i))
+                {   
+                    colour++;
+                    colored+=vertex[i];
+                    break;
+                }
+            }
+        }
+    System.out.println(colour);
+    }
+    
+    public void readGraph()
+    {
+            System.out.println("Enter number of vertices :");
+            vertices=s.nextInt();
+        int adj[][]=new int [vertices][vertices];
+        System.out.println("Provide adjacency matrix as input: ");
+        for(int i=0;i<vertices;i++)
+        {
+            for(int j=0;j<vertices;j++) {
+                adj[i][j]=s.nextInt();
+            }
+        }
+        getConnectedVertices(vertices,adj);
+    }
+	public static void main(String[] args) {
+	    Main m=new Main();
+	    m.readGraph();
+	}
+}

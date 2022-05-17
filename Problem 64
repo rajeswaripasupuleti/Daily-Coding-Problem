@@ -22,7 +22,7 @@ class Main
         }
         else 
         {
-            System.out.println(4*(n-2)*(n-1)+8*(n-2)*(n-1));
+            System.out.println(2*(n-2)*(n-1)+4*(n-2)*(n-1));
         }
     }
 }

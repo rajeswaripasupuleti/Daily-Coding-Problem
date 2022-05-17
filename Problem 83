@@ -1,0 +1,108 @@
+/*
+
+Good morning! Here's your coding interview problem for today.
+
+This problem was asked by Google.
+
+Invert a binary tree.
+
+*/
+
+import java.util.*;
+
+class Node 
+{
+		int key;
+		Node left, right;
+
+		public Node(int item)
+		{
+			key = item;
+			left = right = null;
+		}
+}
+	
+class BinarySearchTree
+{
+	Node root;
+	BinarySearchTree() 
+	{
+	    this.root =null; 
+	}
+
+	BinarySearchTree(int value) 
+	{ 
+	    root = new Node(value);
+	}
+	void insert(int key) 
+	{ 
+	    root = insertRec(root, key);
+	}
+
+	Node insertRec(Node root, int key)
+	{
+		if (root == null) 
+		{
+			root = new Node(key);
+			return root;
+		}
+        else
+        {
+		if (key <= root.key)
+			root.left = insertRec(root.left, key);
+		else
+			root.right = insertRec(root.right, key);
+        }
+		return root;
+	}
+	void inorder()
+	{ 
+	    inorderRec(root);
+	}
+	void inorderRec(Node root)
+	{
+		if (root != null)
+		{
+			inorderRec(root.left);
+			System.out.print(root.key+" ");
+			inorderRec(root.right);
+		}
+	}
+	void invert()
+	{
+	    invertTree(root);
+	}
+	void invertTree(Node root)
+	{
+	    if(root!=null)
+	    {
+	        Node temp;
+	        temp=root.right;
+	        root.right=root.left;
+	        root.left=temp;
+	    }
+	}
+}
+public class Main
+{
+    public static void main(String[] args)
+	{
+	    Main m=new Main();
+		Scanner s=new Scanner(System.in);
+		System.out.println("Enter root ");
+		int root=s.nextInt();
+		BinarySearchTree tree = new BinarySearchTree(root);
+		int ch,i=0;
+		do
+		{
+		    System.out.println("Enter a value to insert ");
+		    int val=s.nextInt();
+		    tree.insert(val);
+		    System.out.println("Enter 1 to continue 0 to stop ");
+		    ch=s.nextInt();
+		}while(ch!=0);
+	tree.inorder();
+	tree.invert();
+	System.out.println("\n");
+	tree.inorder();
+}}

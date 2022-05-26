@@ -1,0 +1,104 @@
+import java.util.*;
+class Node
+{
+    char data;
+    Node next;
+}
+class Stack
+{
+    Node top=null;
+    Stack()
+    {
+        top=null;
+    }
+    public void push(char data)
+    {
+        Node n=new Node();
+        n.data=data;
+        if(top==null)
+        {
+            top=n;
+            n.next=null;
+        }
+        else
+        {
+            n.next=top;
+            top=n;
+        }
+    }
+    public char peek()
+    {
+        if(top==null)return '1';
+        else return top.data;
+    }
+    public char pop()
+    {
+        if(top==null)
+        {
+            return '1';
+        }
+        else
+        {
+            char popped=top.data;
+            top=top.next;
+            return popped;
+        }
+    }
+}
+public class Main
+{
+	public static void main(String[] args) 
+	{
+	    Scanner s=new Scanner(System.in);
+	    Stack stack=new Stack();
+	    String exp;
+	    int count=0;
+	    exp=s.next();
+	    for(int i=0;i<exp.length();i++)
+	    {
+	        char ch=exp.charAt(i);
+	        char c;
+    	        if(ch=='[' || ch=='{' || ch=='(')
+    	        {
+    	           stack.push(ch);
+    	           count++;
+    	        }
+    	        else if(ch==']')
+    	        {
+    	            if(stack.peek()=='[')
+    	            {
+    	                c=stack.pop();
+    	                count--;
+    	            }
+    	           else
+    	            count++;
+    	        }
+    	         else if(ch=='}')
+    	         {
+    	             if(stack.peek()=='{')
+    	            {
+    	                c=stack.pop();
+    	                count--;
+    	            }
+    	           else
+    	            count++;
+    	         }
+    	         else if(ch==')')
+    	         {
+    	            if(stack.peek()=='(')
+    	            {
+    	                c=stack.pop();
+    	                count--;
+    	            }
+    	           else
+    	            count++;
+    	         }
+	    }
+	    char a=stack.peek();
+	    if(a=='1' && count==0)
+	    System.out.println("Balanced");
+	    else
+	     System.out.println("un Balanced "+count);
+	   
+	}
+}

@@ -71,7 +71,7 @@ class DoublyLinkedList
         {
             Node temp=this.head;
             Node temp2=end;
-            while(temp.next!=null && temp2.prev!=null)
+            while(temp.next!=temp2.prev)
             {
                 if(temp.data!=temp2.data)
                 {

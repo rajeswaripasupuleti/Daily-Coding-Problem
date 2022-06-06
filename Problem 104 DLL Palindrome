@@ -1,0 +1,107 @@
+/*
+
+Determine whether a doubly linked list is a palindrome. What if it’s singly linked?
+
+For example, 1 -> 4 -> 3 -> 4 -> 1 returns True while 1 -> 4 returns False.
+
+*/
+
+class Node 
+{
+    int data;
+    Node prev;
+    Node next;
+    public Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+    }
+}
+class DoublyLinkedList
+{
+    Node head;
+    Node end;
+    DoublyLinkedList()
+    {
+        head=null;
+        end=null;
+    }
+    
+    void insert(int data)
+    {
+        head=insertNode(head,data);
+    }
+    
+    Node insertNode(Node head,int data)
+    {
+        Node n=new Node(data);
+       if(head==null)
+       {
+          head=n;
+          end=n;
+        return head;
+       }
+       else 
+       {
+          Node temp;
+        temp=head;
+         while(temp.next!=null)
+            {
+                temp=temp.next;
+            }
+            temp.next=n;
+            n.prev=temp;
+            end=n;
+            end.prev=temp;
+       }
+        return head;
+    }
+    
+    boolean isPalindrome()
+    {
+        String s="";
+        if(this.head==null)
+        return false;
+        else if(this.head.next==null)
+        return true;
+        else if(head.data==head.next.data)
+        return true;
+        else 
+        {
+            Node temp=this.head;
+            Node temp2=end;
+            while(temp.next!=null && temp2.prev!=null)
+            {
+                if(temp.data!=temp2.data)
+                {
+                    return false;
+                }
+                else
+                {
+                temp=temp.next;
+                temp2=temp2.prev;
+                }
+            }
+            s+=temp.data;
+            //System.out.println(s);
+            return true;
+        }
+    }
+    
+}
+public class Main
+{
+	public static void main(String[] args) {
+	    DoublyLinkedList d=new DoublyLinkedList();
+	    d.insert(100);
+	    d.insert(200);
+	     d.insert(200);
+	    //d.insert(300);
+	    d.insert(200);
+	     d.insert(200);
+	    d.insert(100);
+	    System.out.println(d.isPalindrome());
+		
+	}
+}

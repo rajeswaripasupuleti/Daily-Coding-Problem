@@ -1,0 +1,16 @@
+'''
+
+This problem was asked by Cisco.
+
+Given an unsigned 8-bit integer, swap its even and odd bits. The 1st and 2nd bit should be swapped, the 3rd and 4th bit should be swapped, and so on.
+
+For example, 10101010 should be 01010101. 11100010 should be 11010001.
+
+'''
+
+inp=int(input())
+bin_=bin(inp)[2:]
+bin_='0'*(8-len(bin_))+bin_
+
+s=''.join([bin_[i:i+2][::-1] for i in range(0,len(bin_),2)])
+print(s)

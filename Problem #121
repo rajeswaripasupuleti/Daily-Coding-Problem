@@ -1,0 +1,47 @@
+/*
+
+This problem was asked by Google.
+
+Given a string which we can delete at most k, return whether you can make a palindrome.
+
+For example, given 'waterrfetawx' and a k of 2, you could delete f and x to get 'waterretaw'.
+
+*/
+
+import java.util.*;
+
+public class Main
+{
+    Scanner s=new Scanner(System.in);
+    String str;
+    int k;
+    public void getData(){
+        str=s.next();
+        k=s.nextInt();
+        
+    }
+    public boolean isPalindrome()
+    {
+        int c=0;
+        for(int i=0;i<str.length();i++)
+        {
+         if(str.indexOf(str.charAt(i))==str.lastIndexOf(str.charAt(i)))
+         {
+             c++;
+         }
+        }
+        if(c==k || k+1==c)
+        {
+            return true;
+        }
+        else return false;
+    }
+    public static void main(String...args)
+    {
+        Main m =new Main();
+        m.getData();
+        //System.out.
+        System.out.println(m.isPalindrome());
+        
+    }
+}
